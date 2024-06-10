@@ -7,13 +7,13 @@ const fs = require("fs-extra");
 gulp.task('js', function() {
     return gulp.src('src/**/*.js')
         .pipe(concat('script.js'))
-        .pipe(gulp.dest('dist/js'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('css', function () {
     return gulp.src('src/**/*.css') // source of any css files
         .pipe(concat('styles.css')) // the name of the concatenated files
-        .pipe(gulp.dest('dist/css')); // the destination of the files
+        .pipe(gulp.dest('dist')); // the destination of the files
 });
 
 
@@ -24,8 +24,8 @@ gulp.task('file-include', function () {
             basepath: '@file'
         }))
         .pipe(cheerio($ => {
-            $('head').append('<link rel="stylesheet" href="css/styles.css">');
-            $('body').append('<script src="js/script.js"></script>');
+            $('head').append('<link rel="stylesheet" href="styles.css">');
+            $('body').append('<script src="script.js"></script>');
         }))
         .pipe(gulp.dest('dist'));
 });
